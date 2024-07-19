@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100  ">
+    
+   <div class="container flex flex-col justify-center items-center h-screen">
+     <h1 class="text-4xl font-bold mb-8 text-center text-gray-800">Tic Tac Toe</h1>
+     <div class="game-box grid grid-cols-3 gap-4 w-64 mx-auto">
+         <div id="box1" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
+         <div id="box2" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
+         <div id="box3" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
+         <div id="box4" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
+         <div id="box5" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
+         <div id="box6" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
+         <div id="box7" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
+         <div id="box8" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
+         <div id="box9" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
+     </div>
+     <div id="status" class="mt-8 text-xl font-semibold text-gray-700"></div>
+     <button id="resetBtn" class="mx-auto mt-6 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors duration-300 ">Reset Game</button>
+   </div>
+
+
+   <div id ="winScreen" class="absolute top-0 w-full h-full z-[10] bg-gray-100 flex flex-col items-center justify-center gap-2">
+     <h1 class="text-4xl font-bold  text-center text-gray-800">WINNER IS :</h1>
+     <button id="newGameBtn" class="mx-auto mt-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors duration-300 ">Reset Game</button>
+   </div>
+
+   <script>
+     // JavaScript for game logic will go here
+        const winScreen = document.getElementById("winScreen");
+       const showGame = () =>
+        {
+            winScreen.classList.add("hidden");
+        }
+        const newGame = addEventListener("click" , showGame);
+        
+
+        
+   </script>
+</body>
+</html>
