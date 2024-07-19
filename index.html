@@ -32,16 +32,40 @@
    </div>
 
    <script>
-     // JavaScript for game logic will go here
+        const boxes = document.querySelectorAll(".box");
+        let turnO = true; // flag to tell whose turn we're on
+
+        // logic to mark O's and X's
+        boxes.forEach((box) =>
+        {
+           
+                box.addEventListener("click", ()=>
+                {
+                    if(turnO)
+                   {
+                    box.style.color = "red";
+                    box.innerText = "X";
+                    turnO = false;
+                   }
+
+                   else{
+                    box.style.color = "green";
+                    box.innerText = "O";
+                    turnO = true;
+                   }
+                })
+          
+            
+        })
+
+        // Winner Game : 
         const winScreen = document.getElementById("winScreen");
-       const showGame = () =>
+        const showGame = () =>
         {
             winScreen.classList.add("hidden");
         }
         const newGame = addEventListener("click" , showGame);
-        
 
-        
    </script>
 </body>
 </html>
