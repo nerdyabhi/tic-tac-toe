@@ -1,43 +1,27 @@
-## How to install tailwind CSS (like a pro)
+### Tic-Tac-Toe
 
-1. npm install -D tailwindcss postcss autoprefixer vite
-2. npx tailwindcss init -p
-3. Add '\*' in content of tailwind config file
-4. create main.css and insert
+### [Live Link 🔗](https://nerdyabhi.github.io/tic-tac-toe/)
 
-   - @tailwind base;
-   - @tailwind components;
-   - @tailwind utilities;
+One of the games i used to play with my friend in a boring lecture.
 
-5. After all this , run `npm run start` on terminal.
+- Although , i made this project while learning javascript
 
-### Package.json will look like this
+- I took inspiration from 'APNA college's' tic-tac toe video but that's not it.
 
-```json
-{
-  "scripts": {
-    "start": "vite"
-  },
-  "devDependencies": {
-    "postcss": "^8.4.39",
-    "tailwindcss": "^3.4.6",
-    "vite": "^5.3.4"
-  },
-  "dependencies": {
-    "autoprefixer": "^10.4.19"
-  }
-}
-```
+### Things i did on my own :
 
-### Tailwind.config.js will look like this
+1. Made the UI as per my liking using tailwind css.
+2. Added options , where one can enter player's name.
+3. Who's turn is next ? implemented
+4. And also the scores of both the players are stored.
+5. Made UI/UX a little better for mobile screens.
 
-```js
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ['*'],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-};
-```
+### Left for future:
+
+- [ ] Add online multiplayer mode and matchmaking based on levels
+
+- [ ] Add options where user can play VS computer 
+
+- [ ] User have their game data (including level of player) saved and can be acessed by logining.
+
+- [ ] Open source this project.
