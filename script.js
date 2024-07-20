@@ -4,7 +4,18 @@ const newGameBtn = document.querySelector('#newGameBtn');
 const winScreen = document.getElementById('winScreen');
 const winnerIs = document.querySelector('#winnerIs');
 const prevGameBtn = document.querySelector('#prevGameBtn');
+const playerForm = document.querySelector('#playerForm');
+const closeBtn = document.querySelector('#closeBtn');
+const player1 = document.querySelector('#player1');
+const player2 = document.querySelector('#player2');
+const changeName = document.querySelector("#changeName");
+const turn1 = document.querySelector("#turn1");
+const turn2 = document.querySelector("#turn2");
 let turnO = true; // flag to tell whose turn we're on
+
+closeBtn.addEventListener('click' , ()=>{
+    playerForm.style.display = "none";
+})
 
 const winningPatterns = [
   [0, 1, 2],
@@ -17,6 +28,25 @@ const winningPatterns = [
   [6, 7, 8],
 ];
 
+let name1 = 'Player1 (X)';
+let name2 = 'Player2 (O)';
+
+
+
+changeName.addEventListener('click' ,()=>{
+    if(player1.value != '') name1 = player1.value.toUpperCase();
+    if(player2.value != '') name2 = player2.value.toUpperCase();
+
+    turn1.innerText = `${name1}'s turn`;
+    turn2.innerText = `${name2}'s turn`;
+    playerForm.style.display = "none";
+
+})
+
+turn2.style.display = "none";
+
+
+
 const checkWinner = () => {
   for (let pattern of winningPatterns) {
     let pos1 = boxes[pattern[0]].innerText;
@@ -27,7 +57,8 @@ const checkWinner = () => {
       if (pos1 === pos2 && pos1 === pos3) {
         winScreen.classList.remove('hidden');
         const winner = document.createElement('span');
-        winner.innerText = pos1;
+        if(pos1 === 'X') winner.innerText = name1;
+        else winner.innerText = name2
         if (pos1 == 'X') {
           winner.setAttribute('class', 'text-red-500');
         } else {
@@ -51,14 +82,22 @@ boxes.forEach((box) => {
   box.addEventListener('click', () => {
 
     if(box.getAttribute('alreadyClicked') === 'true') return;
+    
+
 
     if (turnO) {
       box.style.color = 'red';
       box.innerText = 'X';
+      turn1.style.display = "none";
+      turn2.style.display = "block";
+      
       turnO = false;
+      
     } else {
       box.style.color = 'green';
       box.innerText = 'O';
+      turn2.style.display = "none";
+      turn1.style.display = "block";
       turnO = true;
     }
 
