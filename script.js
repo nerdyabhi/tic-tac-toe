@@ -11,6 +11,12 @@ const player2 = document.querySelector('#player2');
 const changeName = document.querySelector("#changeName");
 const turn1 = document.querySelector("#turn1");
 const turn2 = document.querySelector("#turn2");
+const player1Name = document.querySelector("#player1Name");
+const player2Name = document.querySelector("#player2Name");
+const score1Name = document.querySelector("#score1Name");
+const score2Name = document.querySelector("#score2Name");
+
+let score1 = 0 , score2 =0;
 let turnO = true; // flag to tell whose turn we're on
 
 closeBtn.addEventListener('click' , ()=>{
@@ -39,7 +45,10 @@ changeName.addEventListener('click' ,()=>{
 
     turn1.innerText = `${name1}'s turn`;
     turn2.innerText = `${name2}'s turn`;
+    player1Name.innerText = name1;
+    player2Name.innerText = name2;
     playerForm.style.display = "none";
+    
 
 })
 
@@ -57,14 +66,18 @@ const checkWinner = () => {
       if (pos1 === pos2 && pos1 === pos3) {
         winScreen.classList.remove('hidden');
         const winner = document.createElement('span');
-        if(pos1 === 'X') winner.innerText = name1;
-        else winner.innerText = name2
+        if(pos1 === 'X') winner.innerText = `${name1} `;
+        else winner.innerText = `${name2} `;
         if (pos1 == 'X') {
           winner.setAttribute('class', 'text-red-500');
+          score1++;
         } else {
           winner.setAttribute('class', 'text-green-500');
+          score2++;
         }
-        winnerIs.appendChild(winner);
+        score1Name.innerText= score1;
+        score2Name.innerText= score2;
+        winnerIs.prepend(winner);
         return true;
       }
     }
@@ -121,7 +134,7 @@ const enableBoxes = () =>{
         box.innerText = '';
         box.setAttribute('alreadyClicked' , 'false');
         count =0;
-        winnerIs.innerText = "Winner Is ";
+        winnerIs.innerText = "Won 🥳 ";
       }
 }
 
@@ -147,5 +160,5 @@ newGameBtn.addEventListener('click', () =>{
     count =0;
     enableBoxes();
     showGame();
-    winnerIs.innerText = 'WINNER IS ';
+    winnerIs.innerText = 'WON 🎊🥳 ';
 });

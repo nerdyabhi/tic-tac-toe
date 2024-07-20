@@ -58,8 +58,8 @@
         <h1 class="text-4xl font-bold mb-8 text-center text-gray-800">Tic Tac Toe</h1>
         <!-- Player's turn -->
         <div id="playersTurn" class="my-4 text-xl  drop-shadow-[10px 10px 10px red] "  >
-           <h2 class="text-red-500" id="turn1"> Player 1 (X)'s turn</h2>
-            <h2 class="text-green-500" id="turn2">Player 2 (O)'s turn</h2>
+           <h2 class="text-red-500 font-bold transition-all duration-500" id="turn1"> Player 1 (X)'s turn</h2>
+            <h2 class="text-green-500 font-bold transition-all duration-500" id="turn2">Player 2 (O)'s turn</h2>
         </div>
         <div class="game-box grid grid-cols-3 gap-4 w-64 mx-auto">
             <div id="box1" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
@@ -76,11 +76,20 @@
         <button id="resetBtn" class="mx-auto mt-6 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors duration-300">Reset Game</button>
     </div>
 
-    <div id="winScreen" class="hidden absolute top-0 w-full h-full z-20 bg-gray-100 bg-opacity-90 flex flex-col items-center justify-center gap-2">
-        <h1 id="winnerIs" class="text-4xl font-bold text-center text-gray-800">WINNER IS : </h1>
-        <button id="newGameBtn" class="mx-auto mt-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors duration-300">Reset Game</button>
+    <div id="winScreen" class=" absolute top-0 w-full h-full z-20 bg-gray-100 bg-opacity-90 flex flex-col items-center justify-center gap-2">
+        <h1 id="winnerIs" class="text-4xl font-bold text-center text-gray-800">Won 🎉🎊</h1>
+        <div class="mt-5 score-card flex flex-col gap-4 items-center justify-between">
+          <h2 class="text-center text-3xl">Scores:</h2>
+          <p class="text-2xl text-red-500"><span id="player1Name"></span><span class="ml-3" id="score1Name"></span></p>
+          <p class="text-2xl text-green-600"><span id="player2Name"></span><span class="ml-3" id="score2Name"></span></p>
+      </div>
+        <button id="newGameBtn" class="mx-auto mt-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors duration-300">New Game</button>
         <button id="prevGameBtn" class="mx-auto mt-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors duration-300">Previous Game</button>
+
+       
     </div>
+
+    
 
     <div class=" z-[101] absolute bottom-2 w-full text-center text-gray-600">
        <p>Made with 💖 by <a class="text-blue-500" target="_blank" href="https://www.github.com/nerdyabhi">Nerdy Abhi</a> </p> 
