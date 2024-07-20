@@ -87,7 +87,9 @@ const checkWinner = () => {
 const gameDraw = () => {
   winScreen.classList.remove('hidden');
   winScreen.classList.add('text-green-400');
-  winnerIs.innerText = 'Oh ho , we had a draw';
+  winnerIs.innerText = 'Game Draw ! 😮‍💨';
+  score1Name.innerText= score1;
+  score2Name.innerText= score2;
 };
 // logic to mark O's and X's
 let count = 0;
