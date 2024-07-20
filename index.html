@@ -4,34 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe Game</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(15px, -15px); }
+            100% { transform: translate(0, 0); }
+        }
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(255, 196, 2, 0.3), rgba(255, 11, 11, 0.3));
+            backdrop-filter: blur(10px);
+            animation: float 10s infinite ease-in-out;
+        }
+    </style>
 </head>
-<body class="bg-gray-100  ">
+<body class="bg-gray-100 overflow-hidden">
+    <div class="  md:block floating-circle w-64 h-64 top-[-100px] left-[-50px]"></div>
+    <div class=" hidden md:block floating-circle w-96 h-96 bottom-[-150px] right-[-100px]" style="animation-delay: -5s;"></div>
+    <div class="hidden  md:block floating-circle w-48 h-48 top-[40%] left-[20%]" style="animation-delay: -2s;"></div>
     
-   <div class="container flex flex-col justify-center items-center h-screen">
-     <h1 class="text-4xl font-bold mb-8 text-center text-gray-800">Tic Tac Toe</h1>
-     <div class="game-box grid grid-cols-3 gap-4 w-64 mx-auto">
-         <div id="box1" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
-         <div id="box2" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
-         <div id="box3" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
-         <div id="box4" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
-         <div id="box5" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
-         <div id="box6" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
-         <div id="box7" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
-         <div id="box8" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
-         <div id="box9" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
-     </div>
-     <div id="status" class="mt-8 text-xl font-semibold text-gray-700"></div>
-     <button id="resetBtn" class="mx-auto mt-6 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors duration-300 ">Reset Game</button>
-   </div>
+    <div class="container flex flex-col justify-center items-center h-screen relative z-10">
+        <h1 class="text-4xl font-bold mb-8 text-center text-gray-800">Tic Tac Toe</h1>
+        <div class="game-box grid grid-cols-3 gap-4 w-64 mx-auto">
+            <div id="box1" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
+            <div id="box2" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
+            <div id="box3" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
+            <div id="box4" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
+            <div id="box5" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
+            <div id="box6" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
+            <div id="box7" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
+            <div id="box8" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
+            <div id="box9" class="box bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md hover:bg-gray-50 transition-colors duration-300"></div>
+        </div>
+        <div id="status" class="mt-8 text-xl font-semibold text-gray-700"></div>
+        <button id="resetBtn" class="mx-auto mt-6 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors duration-300">Reset Game</button>
+    </div>
 
+    <div id="winScreen" class="hidden absolute top-0 w-full h-full z-20 bg-gray-100 bg-opacity-90 flex flex-col items-center justify-center gap-2">
+        <h1 id="winnerIs" class="text-4xl font-bold text-center text-gray-800">WINNER IS : </h1>
+        <button id="newGameBtn" class="mx-auto mt-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors duration-300">Reset Game</button>
+        <button id="prevGameBtn" class="mx-auto mt-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors duration-300">Previous Game</button>
+    </div>
 
-   <div id ="winScreen" class="hidden absolute top-0 w-full h-full z-[10] bg-gray-100 flex flex-col items-center justify-center gap-2">
-     <h1 id="winnerIs" class="text-4xl font-bold  text-center text-gray-800">WINNER IS : </h1>
-     <button id="newGameBtn" class="mx-auto mt-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors duration-300 ">Reset Game</button>
-     <button id="prevGameBtn" class="mx-auto mt-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors duration-300 ">Previous Game</button>
-   </div>
+    <div class=" z-[10] absolute bottom-4 w-full text-center text-gray-600">
+       <p>Made with 💖 by <a class="text-blue-500" target="_blank" href="https://www.github.com/nerdyabhi">Nerdy Abhi</a> </p> 
+    </div>
 
+    <script src="script.js"></script>
 </body>
-<script src="script.js"> </script>
 </html>

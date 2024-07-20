@@ -82,6 +82,7 @@ const enableBoxes = () =>{
         box.innerText = '';
         box.setAttribute('alreadyClicked' , 'false');
         count =0;
+        winnerIs.innerText = "Winner Is ";
       }
 }
 
