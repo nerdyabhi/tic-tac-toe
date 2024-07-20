@@ -26,46 +26,12 @@
    </div>
 
 
-   <div id ="winScreen" class="absolute top-0 w-full h-full z-[10] bg-gray-100 flex flex-col items-center justify-center gap-2">
-     <h1 class="text-4xl font-bold  text-center text-gray-800">WINNER IS :</h1>
+   <div id ="winScreen" class="hidden absolute top-0 w-full h-full z-[10] bg-gray-100 flex flex-col items-center justify-center gap-2">
+     <h1 id="winnerIs" class="text-4xl font-bold  text-center text-gray-800">WINNER IS : </h1>
      <button id="newGameBtn" class="mx-auto mt-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors duration-300 ">Reset Game</button>
+     <button id="prevGameBtn" class="mx-auto mt-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors duration-300 ">Previous Game</button>
    </div>
 
-   <script>
-        const boxes = document.querySelectorAll(".box");
-        let turnO = true; // flag to tell whose turn we're on
-
-        // logic to mark O's and X's
-        boxes.forEach((box) =>
-        {
-           
-                box.addEventListener("click", ()=>
-                {
-                    if(turnO)
-                   {
-                    box.style.color = "red";
-                    box.innerText = "X";
-                    turnO = false;
-                   }
-
-                   else{
-                    box.style.color = "green";
-                    box.innerText = "O";
-                    turnO = true;
-                   }
-                })
-          
-            
-        })
-
-        // Winner Game : 
-        const winScreen = document.getElementById("winScreen");
-        const showGame = () =>
-        {
-            winScreen.classList.add("hidden");
-        }
-        const newGame = addEventListener("click" , showGame);
-
-   </script>
 </body>
+<script src="script.js"> </script>
 </html>
