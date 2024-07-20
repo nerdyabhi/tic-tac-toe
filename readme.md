@@ -14,14 +14,31 @@ One of the games i used to play with my friend in a boring lecture.
 2. Added options , where one can enter player's name.
 3. Who's turn is next ? implemented
 4. And also the scores of both the players are stored.
-5. Made UI/UX a little better for mobile screens.
+
+5. Added a previous game option , where player can watch their previous game board
+
+6. Made UI/UX a little better for mobile screens.
 
 ### Left for future:
 
 - [ ] Add online multiplayer mode and matchmaking based on levels
 
-- [ ] Add options where user can play VS computer 
+- [ ] Add options where user can play VS computer
 
 - [ ] User have their game data (including level of player) saved and can be acessed by logining.
 
 - [ ] Open source this project.
+
+## Screenshots
+
+### Can change Player's name :
+
+![alt text](image-2.png)
+
+### show's who's turn is next
+
+![alt text](image-1.png)
+
+### Win Screen and Score Card
+
+![alt text](image.png)
