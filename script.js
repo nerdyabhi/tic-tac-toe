@@ -15,6 +15,14 @@ const player1Name = document.querySelector("#player1Name");
 const player2Name = document.querySelector("#player2Name");
 const score1Name = document.querySelector("#score1Name");
 const score2Name = document.querySelector("#score2Name");
+const body = document.querySelector('html');
+const darkMode = document.querySelector('#darkModeToggle');
+
+darkMode.addEventListener('click' , () => {
+  body.classList.toggle('dark');
+  
+})
+
 
 let score1 = 0 , score2 =0;
 let turnO = true; // flag to tell whose turn we're on
@@ -72,6 +80,7 @@ const checkWinner = () => {
           winner.setAttribute('class', 'text-red-500');
           score1++;
         } else {
+         
           winner.setAttribute('class', 'text-green-500');
           score2++;
         }
@@ -109,7 +118,12 @@ boxes.forEach((box) => {
       turnO = false;
       
     } else {
-      box.style.color = 'green';
+      if(body.classList.contains('dark')){
+        box.style.color = 'lightgreen';
+      }
+      else{
+        box.style.color = 'green';
+      }
       box.innerText = 'O';
       turn2.style.display = "none";
       turn1.style.display = "block";
