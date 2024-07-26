@@ -53,12 +53,11 @@ changeName.addEventListener('click' ,()=>{
 
     turn1.innerText = `${name1}'s turn`;
     turn2.innerText = `${name2}'s turn`;
-    player1Name.innerText = name1;
-    player2Name.innerText = name2;
     playerForm.style.display = "none";
-    
-
 })
+
+player1Name.innerText = name1;
+player2Name.innerText = name2;
 
 turn2.style.display = "none";
 
@@ -74,14 +73,13 @@ const checkWinner = () => {
       if (pos1 === pos2 && pos1 === pos3) {
         winScreen.classList.remove('hidden');
         const winner = document.createElement('span');
-        if(pos1 === 'X') winner.innerText = `${name1} `;
-        else winner.innerText = `${name2} `;
-        if (pos1 == 'X') {
+        if (pos1 === 'X') {
+          winner.innerText = `${name1} `;
           winner.setAttribute('class', 'text-red-500');
           score1++;
-        } else {
-         
+        } else{
           winner.setAttribute('class', 'text-green-500');
+          winner.innerText = `${name2} `;
           score2++;
         }
         score1Name.innerText= score1;
