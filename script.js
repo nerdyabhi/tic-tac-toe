@@ -54,10 +54,12 @@ changeName.addEventListener('click' ,()=>{
     turn1.innerText = `${name1}'s turn`;
     turn2.innerText = `${name2}'s turn`;
     playerForm.style.display = "none";
+
+    player1Name.innerText = name1;
+    player2Name.innerText = name2;
 })
 
-player1Name.innerText = name1;
-player2Name.innerText = name2;
+
 
 turn2.style.display = "none";
 
