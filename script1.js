@@ -7,6 +7,7 @@ const playerTurn = document.querySelector('#playersTurn');
 const closeBtn = document.querySelector('#closeBtn');
 const prevGameBtn = document.querySelector('#prevGameBtn');
 const darkMode = document.querySelector('#darkModeToggle');
+const changeModeBtn = document.querySelector("#changeModeBtn");
 const body = document.querySelector('html');
 
 // Logic for dark mode
@@ -192,6 +193,11 @@ closeBtn.addEventListener('click', () => {
 prevGameBtn.addEventListener('click', () => {
   winScreen.classList.add('hidden');
 });
+
+changeModeBtn.addEventListener('click' , ()=>{
+    clearBoxes();
+    vsCom = !vsCom;
+})
 
 let boardLocked = false;
 function comMoveEasy() {

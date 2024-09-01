@@ -3,41 +3,41 @@
 ### [Live Link 🔗](https://nerdyabhi.github.io/tic-tac-toe/)
 
 One of the games i used to play with my friend in a boring lecture.
-
 - Although , i made this project while learning javascript
 
-- I took inspiration from 'APNA college's' tic-tac toe video but that's not it.
 
-### Things i did on my own :
+### Version 2.0 Updates:
+1. Implemented a bot to play against user.
+2. No more annoying popup for changing Name.
+3. More Clean and Optimized Code.
 
-1. Made the UI as per my liking using tailwind css.
-2. Added options , where one can enter player's name.
-3. Who's turn is next ? implemented
-4. And also the scores of both the players are stored.
+4. New GIF's for Winscreen Etc.
 
-5. Added a previous game option , where player can watch their previous game board
+### Some Hidden Features :
+- You can press `space` or `d` to toggle (on/off) dark mode.
+- You can click on `Player's Turn ` button to change their names as well
+- You can use a particular pattern to win every time (as i haven't used minimax algorithm).
 
-6. Made UI/UX a little better for mobile screens.
+
 
 ### Left for future:
 
-- [ ] Add online multiplayer mode and matchmaking based on levels
+- [ ] use Minimax algorithm and provide a `hard` Mode to play against user.
 
-- [ ] Add options where user can play VS computer
+- [ ] Add online multiplayer mode and matchmaking based on levels
 
 - [ ] User have their game data (including level of player) saved and can be acessed by logining.
 
-- [ ] Open source this project.
 
 ## Screenshots
 
+
+### New Game Modes:
+![alt text](/asset/newGameModes.png)
+
 ### Can change Player's name :
 
-![alt text](./asset/image-2.png)
-
-### show's who's turn is next
-
-![alt text](./asset/image-1.png)
+![alt text](./asset/image.png)
 
 ### Win Screen and Score Card
 
