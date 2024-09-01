@@ -14,13 +14,20 @@ darkMode.addEventListener('click', () => {
   body.classList.toggle('dark');
 });
 
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'd' || event.key === 'D') {
+      body.classList.toggle('dark');
+    }
+  });
+
+
 let turnO = false;
 let player1 = 'Player1 (X)',
   player2 = 'Player2 (O)';
 let htmlForTurn = `<span class="text-red-500 font-bold transition-all" > X </span>`;
 let score1 = 0,
   score2 = 0,
-  count = 0;
+  count = 0;   
 
 function updateHtml() {
   let playerNameDiv = playerTurn.children[0];
@@ -153,7 +160,7 @@ modeSelection.addEventListener('click', (evt) => {
   }
 });
 
-playerTurn.addEventListener('click', () => {
+playerTurn.addEventListener('click' , () => {
   const playerForm = document.getElementById('playerForm');
   const player1input = document.querySelector('#player1');
   const player2input = document.querySelector('#player2');
