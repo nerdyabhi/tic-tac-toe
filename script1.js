@@ -56,21 +56,31 @@ function updateScores() {
 function updateWinscreen(winner) {
   let winnerName = document.querySelector('#winnerText');
   let winnerText = winnerName.children[0];
+  const drawMsg = winnerName.children[1];
+
+  drawMsg.classList.add("hidden");
+  winnerText.classList.remove("hidden");
 
   if (winner === 'O') {
     winnerText.children[0].innerText = player2;
     winnerText.children[0].classList.remove('text-red-500');
     winnerText.children[0].classList.add('text-green-500');
-    winnerName.children[1].src = './asset/memeWin.webp';
+    winnerName.children[2].src = './asset/memeWin.webp';
+    console.log(winnerName.children[1]);
+
   } else if (winner === 'X') {
     winnerName.children[0].children[0].innerText = player1;
     winnerText.children[0].classList.add('text-red-500');
     winnerText.children[0].classList.remove('text-green-500');
-    winnerName.children[1].src = './asset/machineWins.webp';
+    winnerName.children[2].src = './asset/machineWins.webp';
+    console.log(winnerName.children[1]);
   } else {
-    winnerName.children[0].innerText = 'Game Draw ! 🥺';
-    winnerName.children[1].src = './asset/memeGameDraw.gif';
+    drawMsg.classList.remove("hidden");
+    winnerText.classList.add("hidden");
+    winnerName.children[2].src = './asset/memeGameDraw.gif';
+    console.log(winnerName.children[1]);
   }
+  winScreen.classList.remove('hidden');
 }
 
 function disableBoxes() {
@@ -111,7 +121,6 @@ const checkWinner = () => {
     if (pos1 != '' && pos2 != '' && pos3 != '') {
       if (pos1 === pos2 && pos1 === pos3) {
         updateWinscreen(pos1);
-        winScreen.classList.remove('hidden');
         disableBoxes();
 
         if (pos1 === 'O') score2++;
@@ -180,7 +189,6 @@ prevGameBtn.addEventListener('click', () => {
 });
 
 let boardLocked = false;
-
 function comMove() {
   const movesList = Array.from(gameBoxes).filter(
     (box) => !box.classList.contains('clicked')
