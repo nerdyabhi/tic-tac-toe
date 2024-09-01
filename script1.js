@@ -183,42 +183,42 @@ prevGameBtn.addEventListener("click" , ()=>{
     winScreen.classList.add("hidden");
 })
 
+let boardLocked = false;
 
-// Make a random Move (LMAO ai);
-function comMove(){
+
+function comMove() {
     const movesList = Array.from(gameBoxes).filter(box => !box.classList.contains("clicked"));
 
-    if(movesList.length>0){
-       setTimeout(() => {
-        let randomIndex = Math.floor(Math.random()*movesList.length);
-        movesList[randomIndex].innerHTML = htmlForTurn;
-        movesList[randomIndex].classList.add("clicked");
-        turnO = !turnO
-        count++;
-        let isWinner = checkWinner();
-        if(count ==9 && !isWinner) gameDraw();
-        updateHtml();
-       }, 1000);
-    }
-    
-   
-}
-
-// Logic for click 
-gameBoxes.forEach((box)=>{
-    
-    box.addEventListener("click", ()=>{
-        if(!box.classList.contains("clicked")){
-            box.classList.add("clicked");
-            box.innerHTML= htmlForTurn;
+    if (movesList.length > 0) {
+        boardLocked = true; // Lock the board
+        setTimeout(() => {
+            let randomIndex = Math.floor(Math.random() * movesList.length);
+            movesList[randomIndex].innerHTML = htmlForTurn;
+            movesList[randomIndex].classList.add("clicked");
             turnO = !turnO;
             count++;
             let isWinner = checkWinner();
-            if(count ==9 && !isWinner) gameDraw();
+            if (count == 9 && !isWinner) gameDraw();
             updateHtml();
-            if(vsCom) comMove();
+            boardLocked = false; // Unlock the board
+        }, 500);
+    }
+}
+
+// Main game Logic
+gameBoxes.forEach((box) => {
+    box.addEventListener("click", () => {
+        if (!box.classList.contains("clicked") && !boardLocked) {
+            box.classList.add("clicked");
+            box.innerHTML = htmlForTurn;
+            turnO = !turnO;
+            count++;
+            let isWinner = checkWinner();
+            if (count == 9 && !isWinner) gameDraw();
+            updateHtml();
+            if (vsCom) comMove();
         }
-    })
-})
+    });
+});
 
 
