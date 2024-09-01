@@ -33,12 +33,12 @@ One of the games i used to play with my friend in a boring lecture.
 
 ### Can change Player's name :
 
-![alt text](image-2.png)
+![alt text](./asset/image-2.png)
 
 ### show's who's turn is next
 
-![alt text](image-1.png)
+![alt text](./asset/image-1.png)
 
 ### Win Screen and Score Card
 
-![alt text](image.png)
+![alt text](./asset/image.png)
