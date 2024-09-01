@@ -15,11 +15,10 @@ darkMode.addEventListener('click', () => {
 });
 
 document.addEventListener('keydown', (event) => {
-    if (event.key === 'd' || event.key === 'D') {
-      body.classList.toggle('dark');
-    }
-  });
-
+  if (event.key === ' ' || event.key === 'd' || event.key === 'D') {
+    body.classList.toggle('dark');
+  }
+});
 
 let turnO = false;
 let player1 = 'Player1 (X)',
@@ -27,7 +26,7 @@ let player1 = 'Player1 (X)',
 let htmlForTurn = `<span class="text-red-500 font-bold transition-all" > X </span>`;
 let score1 = 0,
   score2 = 0,
-  count = 0;   
+  count = 0;
 
 function updateHtml() {
   let playerNameDiv = playerTurn.children[0];
@@ -65,8 +64,8 @@ function updateWinscreen(winner) {
   let winnerText = winnerName.children[0];
   const drawMsg = winnerName.children[1];
 
-  drawMsg.classList.add("hidden");
-  winnerText.classList.remove("hidden");
+  drawMsg.classList.add('hidden');
+  winnerText.classList.remove('hidden');
 
   if (winner === 'O') {
     winnerText.children[0].innerText = player2;
@@ -74,16 +73,14 @@ function updateWinscreen(winner) {
     winnerText.children[0].classList.add('text-green-500');
     winnerName.children[2].src = './asset/memeWin.webp';
     console.log(winnerName.children[1]);
-
   } else if (winner === 'X') {
     winnerName.children[0].children[0].innerText = player1;
     winnerText.children[0].classList.add('text-red-500');
     winnerText.children[0].classList.remove('text-green-500');
     winnerName.children[2].src = './asset/machineWins.webp';
-    console.log(winnerName.children[1]);
   } else {
-    drawMsg.classList.remove("hidden");
-    winnerText.classList.add("hidden");
+    drawMsg.classList.remove('hidden');
+    winnerText.classList.add('hidden');
     winnerName.children[2].src = './asset/memeGameDraw.gif';
     console.log(winnerName.children[1]);
   }
@@ -105,7 +102,6 @@ function clearBoxes() {
     box.classList.remove('clicked');
   });
   updateHtml();
-
 }
 
 const winningPatterns = [
@@ -121,10 +117,12 @@ const winningPatterns = [
 
 const checkWinner = () => {
   for (let pattern of winningPatterns) {
-    let pos1 = gameBoxes[pattern[0]].innerText;
-    let pos2 = gameBoxes[pattern[1]].innerText;
-    let pos3 = gameBoxes[pattern[2]].innerText;
-
+    const [a, b, c] = pattern;
+    const [pos1, pos2, pos3] = [
+      gameBoxes[a].innerText,
+      gameBoxes[b].innerText,
+      gameBoxes[c].innerText,
+    ];
     if (pos1 != '' && pos2 != '' && pos3 != '') {
       if (pos1 === pos2 && pos1 === pos3) {
         updateWinscreen(pos1);
@@ -160,7 +158,7 @@ modeSelection.addEventListener('click', (evt) => {
   }
 });
 
-playerTurn.addEventListener('click' , () => {
+playerTurn.addEventListener('click', () => {
   const playerForm = document.getElementById('playerForm');
   const player1input = document.querySelector('#player1');
   const player2input = document.querySelector('#player2');
@@ -196,7 +194,7 @@ prevGameBtn.addEventListener('click', () => {
 });
 
 let boardLocked = false;
-function comMove() {
+function comMoveEasy() {
   const movesList = Array.from(gameBoxes).filter(
     (box) => !box.classList.contains('clicked')
   );
@@ -217,6 +215,88 @@ function comMove() {
   }
 }
 
+function comMoveMedium() {
+  let index = -1;
+  // Check if any blocking Move is there;
+  let signForPlayer1 = 'X';
+  let signForPlayer2 = 'O';
+
+  // Check if we're winning the game*
+  for (pattern of winningPatterns) {
+    const [a, b, c] = pattern;
+    const [pos1, pos2, pos3] = [
+      gameBoxes[a].innerText,
+      gameBoxes[b].innerText,
+      gameBoxes[c].innerText,
+    ];
+
+    if (pos1 === signForPlayer2 && pos2 === signForPlayer2 && pos3 === '') {
+      index = c;
+      break;
+    } else if (
+      pos1 === '' &&
+      pos2 === signForPlayer2 &&
+      pos3 === signForPlayer2
+    ) {
+      index = a;
+      break;
+    } else if (
+      pos1 === signForPlayer2 &&
+      pos2 === '' &&
+      pos3 === signForPlayer2
+    ) {
+      index = b;
+      break;
+    }
+  }
+
+  // If Not winning , then check if we can block any move*
+  if (index === -1) {
+    for (let pattern of winningPatterns) {
+      const [a, b, c] = pattern;
+      const [pos1, pos2, pos3] = [
+        gameBoxes[a].innerText,
+        gameBoxes[b].innerText,
+        gameBoxes[c].innerText,
+      ];
+
+      if (pos1 === signForPlayer1 && pos2 === signForPlayer1 && pos3 === '') {
+        index = c;
+        break;
+      } else if (
+        pos1 === '' &&
+        pos2 === signForPlayer1 &&
+        pos3 === signForPlayer1
+      ) {
+        index = a;
+        break;
+      } else if (
+        pos1 === signForPlayer1 &&
+        pos2 === '' &&
+        pos3 === signForPlayer1
+      ) {
+        index = b;
+        break;
+      }
+    }
+  }
+
+  if (index === -1) {
+    comMoveEasy();
+    return;
+  }
+  // Logic to implement
+  boardLocked = true;
+  gameBoxes[index].innerHTML = htmlForTurn;
+  gameBoxes[index].classList.add('clicked');
+  turnO = !turnO;
+  count++;
+  let isWinner = checkWinner();
+  if (count == 9 && !isWinner) gameDraw();
+  updateHtml();
+  boardLocked = false; // Unlock the board
+}
+
 // Main game Logic
 gameBoxes.forEach((box) => {
   box.addEventListener('click', () => {
@@ -228,8 +308,7 @@ gameBoxes.forEach((box) => {
       count++;
       let isWinner = checkWinner();
       if (count == 9 && !isWinner) gameDraw();
-      if (vsCom) comMove();
-      
+      if (vsCom) comMoveMedium();
     }
   });
 });
