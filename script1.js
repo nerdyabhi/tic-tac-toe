@@ -329,7 +329,7 @@ gameBoxes.forEach((box) => {
       count++;
       let isWinner = checkWinner();
       if (count == 9 && !isWinner) gameDraw();
-      if (vsCom) comMoveMedium();
+      if(!isWinner && vsCom) comMoveMedium();
     }
   });
 });
