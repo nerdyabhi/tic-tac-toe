@@ -22,12 +22,9 @@ document.addEventListener('keydown', (event) => {
 });
 
 let turnO = false;
-let player1 = 'Player1 (X)',
-  player2 = 'Player2 (O)';
+let player1 = 'Player1 (X)', player2 = 'Player2 (O)';
 let htmlForTurn = `<span class="text-red-500 font-bold transition-all" > X </span>`;
-let score1 = 0,
-  score2 = 0,
-  count = 0;
+let score1 = 0,score2 = 0,count = 0;
 
 function updateHtml() {
   let playerNameDiv = playerTurn.children[0];
@@ -157,6 +154,14 @@ modeSelection.addEventListener('click', (evt) => {
     player2 = 'JARVIS';
     vsCom = true;
   }
+
+  if(vsCom){
+    document.getElementById("msgForMode").innerText = "AI MODE 🤖";
+  }
+
+  else{
+    document.getElementById("msgForMode").innerText = "HUMAN MODE 🧑‍💼";
+  }
 });
 
 playerTurn.addEventListener('click', () => {
@@ -197,6 +202,13 @@ prevGameBtn.addEventListener('click', () => {
 changeModeBtn.addEventListener('click' , ()=>{
     clearBoxes();
     vsCom = !vsCom;
+    if(vsCom){
+      document.getElementById("msgForMode").innerText = "AI MODE 🤖";
+    }
+
+    else{
+      document.getElementById("msgForMode").innerText = "HUMAN MODE 🧑‍💼";
+    }
 })
 
 let boardLocked = false;
@@ -293,14 +305,17 @@ function comMoveMedium() {
   }
   // Logic to implement
   boardLocked = true;
-  gameBoxes[index].innerHTML = htmlForTurn;
-  gameBoxes[index].classList.add('clicked');
-  turnO = !turnO;
-  count++;
-  let isWinner = checkWinner();
-  if (count == 9 && !isWinner) gameDraw();
-  updateHtml();
-  boardLocked = false; // Unlock the board
+  
+  setTimeout(() => {
+    gameBoxes[index].innerHTML = htmlForTurn;
+    gameBoxes[index].classList.add('clicked');
+    turnO = !turnO;
+    count++;
+    let isWinner = checkWinner();
+    if (count == 9 && !isWinner) gameDraw();
+    updateHtml();
+    boardLocked = false; // Unlock the board
+  }, 500);
 }
 
 // Main game Logic
