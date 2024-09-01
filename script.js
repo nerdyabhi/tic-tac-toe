@@ -52,9 +52,28 @@ changeName.addEventListener('click', () => {
   turn2.innerText = `${name2}'s turn`;
   playerForm.style.display = 'none';
 
+<<<<<<< HEAD
   player1Name.innerText = name1;
   player2Name.innerText = name2;
 });
+=======
+changeName.addEventListener('click' ,()=>{
+    if(player1.value != '') name1 = player1.value.toUpperCase();
+    if(player2.value != '') name2 = player2.value.toUpperCase();
+
+    turn1.innerText = `${name1}'s turn`;
+    turn2.innerText = `${name2}'s turn`;
+    playerForm.style.display = "none";
+
+    player1Name.innerText = name1;
+    player2Name.innerText = name2;
+})
+
+
+
+turn2.style.display = "none";
+
+>>>>>>> 3d6069dcfe1dd2f171635b326dbafffdccb7bb3c
 
 turn2.style.display = 'none';
 
