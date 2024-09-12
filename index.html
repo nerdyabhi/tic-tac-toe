@@ -20,14 +20,14 @@
     />
     <style>
       @keyframes float {
-        0% {
-          transform: translate(0, 0);
+        0%, 100% {
+          transform: translate(0, 0) rotate(0deg);
         }
-        50% {
-          transform: translate(15px, -15px);
+        33% {
+          transform: translate(15px, -15px) rotate(5deg);
         }
-        100% {
-          transform: translate(0, 0);
+        66% {
+          transform: translate(-15px, 15px) rotate(-5deg);
         }
       }
       .floating-circle {
@@ -35,19 +35,26 @@
         border-radius: 50%;
         background: linear-gradient(
           45deg,
-          rgba(255, 196, 2, 0.3),
-          rgba(255, 11, 11, 0.3)
+          rgba(255, 196, 2, 0.2),
+          rgba(255, 11, 11, 0.2)
         );
-        backdrop-filter: blur(10px);
-        animation: float 10s infinite ease-in-out;
+        backdrop-filter: blur(8px);
+        animation: float 20s infinite ease-in-out;
+      }
+      .dark .floating-circle {
+        background: linear-gradient(
+          45deg,
+          rgba(59, 130, 246, 0.2),
+          rgba(236, 72, 153, 0.2)
+        );
       }
     </style>
   </head>
-  <body class="dark:bg-[#1e1e1e] bg-gray-100 flex items-center justify-center h-[100%] w-[100%] overflow-hidden">
+  <body class="dark:bg-zinc-900 bg-gray-100 flex items-center justify-center h-screen w-screen overflow-hidden transition-colors duration-300">
   
-    <!-- Dark Mode Button. -->
+    <!-- Dark Mode Button -->
     <button
-      class="absolute top-6 right-10 p-2 rounded-full bg-gray-200 dark:bg-gray-800 transition-all duration-300 ease-in-out dark:focus:ring-blue-300 z-[100]"
+      class="absolute top-6 right-10 p-3 rounded-full bg-gray-200 dark:bg-gray-800 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-500 z-[100]"
       id="darkModeToggle"
       aria-label="Toggle dark mode"
     >
@@ -59,8 +66,7 @@
       ></i>
     </button>
 
-
-    <!-- Animations : -->
+    <!-- Animations -->
     <div class="z-[11] md:block floating-circle w-64 h-64 top-[-100px] left-[-50px] absolute"></div>
     <div class="z-[11] hidden md:block floating-circle w-96 h-96 bottom-[-150px] right-[-100px] absolute" style="animation-delay: -5s"></div>
     <div class="z-[11] hidden md:block floating-circle w-48 h-48 top-[40%] left-[20%] absolute" style="animation-delay: -2s"></div>
@@ -70,21 +76,13 @@
     >
       <div
         id="playerForm"
-        class="hidden dark:bg-[#131313] shadow-2xl opacity-95 dark:shadow-blue-500 shadow-gray-500 absolute top-30 bg-gray-100 playerBox  w-[80%] md:w-[30%] z-[10] p-5"
+        class="hidden dark:bg-zinc-800 shadow-2xl opacity-95 dark:shadow-blue-500/50 shadow-gray-500/50 absolute top-30 bg-gray-100 playerBox w-[80%] md:w-[30%] z-[10] p-5 rounded-lg transition-all duration-300"
       >
         <!-- Box cross -->
         <span
           id="closeBtn"
-          class="cursor-pointer text-2xl absolute right-2 top-1 md:right-5 md:p-3 p-2"
-          ><i clas class="fa-solid fa-xmark"></i
-        ></span>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-          integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-          crossorigin="anonymous"
-          referrerpolicy="no-referrer"
-        />
+          class="cursor-pointer text-2xl absolute right-2 top-1 md:right-5 md:p-3 p-2 hover:text-red-500 transition-colors duration-200"
+        ><i class="fa-solid fa-xmark"></i></span>
         <div class="rounded-lg p-6 mb-6 text-center">
           <h2 class="text-2xl font-bold dark:text-white text-gray-800 mb-4">
             Enter Player Names
@@ -92,14 +90,14 @@
           <div class="mb-4">
             <label
               for="player1"
-              class="block  text-gray-700 dark:text-blue-200 mb-2"
+              class="block text-gray-700 dark:text-blue-200 mb-2"
               >Player 1 (X):</label
             >
             <input
               type="text"
               id="player1"
               placeholder="Enter Player 1 (X)"
-              class="w-full dark:bg-slate-600 text-blue-50 px-3 py-2 border border-gray-300 border-none outline-none rounded-md focus:outline-none focus:ring-0"
+              class="w-full dark:bg-zinc-700 text-blue-50 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
               required
             />
           </div>
@@ -113,137 +111,132 @@
               type="text"
               id="player2"
               placeholder="Enter name"
-              class="w-full dark:bg-slate-600 text-blue-50 px-3 py-2 border border-gray-300 border-none outline-none rounded-md focus:outline-none focus:ring-0"
+              class="w-full dark:bg-zinc-700 text-blue-50 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
               required
             />
           </div>
           <button
             id="changeName"
-            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
           >
             Confirm
           </button>
         </div>
       </div>
       <!-- Message Box -->
-     <div >
-      <h1 id="msgForMode" class="hover:scale-105 transition-all duration-100 cursor-pointer">AI MODE 🤖</h1>
+     <div>
+      <h1 id="msgForMode" class="hover:scale-105 transition-all duration-200 cursor-pointer text-2xl font-bold mb-4 dark:text-blue-300">AI MODE 🤖</h1>
      </div>
       
-
       <!-- Choose Mode -->
-       <div id="modeSelection" class="flex items-center justify-center h-[100vh] w-[100vw] absolute bg-[#222222db]" >
+       <div id="modeSelection" class="flex items-center justify-center h-screen w-screen absolute bg-zinc-900/90 transition-all duration-300">
         <div
-        class="bg-white text-black dark:text-blue-400 w-[50%] md:w-[30%] h-[40%] absolute dark:bg-black flex flex-col items-center justify-center shadow-2xl shadow-black dark:shadow-blue-500 gap-5 p-5 rounded-xl opacity-85"
+        class="bg-white text-black dark:text-blue-400 w-[90%] md:w-[30%] h-auto absolute dark:bg-zinc-800 flex flex-col items-center justify-center shadow-2xl shadow-black/50 dark:shadow-blue-500/30 gap-5 p-8 rounded-xl opacity-95 transition-all duration-300"
       >
-        <h3 class="font-sans font-bold text-xl">Choose Mode</h3>
+        <h3 class="font-sans font-bold text-2xl mb-4">Choose Mode</h3>
         <button
           id="multiBtn"
-          class="border-2 border-slate-700 p-3 rounded-lg bg-white font-semibold text-black shadow-md shadow-blue-400 transition-all duration-200 hover:shadow-none hover:scale-105"
+          class="w-full border-2 border-slate-700 p-3 rounded-lg bg-white dark:bg-zinc-700 font-semibold text-black dark:text-white shadow-md shadow-blue-400/50 transition-all duration-200 hover:shadow-none hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           Multiplayer
         </button>
         <button
           id="vsComBtn"
-          class="border-2 border-slate-700 p-3 rounded-lg bg-white font-semibold text-black shadow-md shadow-blue-400 transition-all duration-200 hover:shadow-none hover:scale-105"
+          class="w-full border-2 border-slate-700 p-3 rounded-lg bg-white dark:bg-zinc-700 font-semibold text-black dark:text-white shadow-md shadow-blue-400/50 transition-all duration-200 hover:shadow-none hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 mt-4"
         >
           Vs Computer
         </button>
       </div>
        </div>
   
-
       <!-- Game box -->
       <h1
-        class="text-4xl font-bold mb-8 text-center dark:text-blue-50 text-gray-800"
+        class="text-4xl font-bold mb-8 text-center dark:text-blue-300 text-gray-800"
       >
         Tic Tac Toe
       </h1>
       <!-- Player's turn -->
       <div
         id="playersTurn"
-        class="my-4 text-xl drop-shadow-[10px 10px 10px red]"
+        class="my-4 text-xl"
       >
         <h2
-          class=" cursor-pointer text-white-500 font-bold transition-all duration-500"
+          class="cursor-pointer text-blue-500 dark:text-blue-300 font-bold transition-all duration-500 hover:scale-105"
           id="turn1"
         >
           Player 1 (X)'s turn
         </h2>
       </div>
 
-        <!-- Gamebox grid -->
+      <!-- Gamebox grid -->
       <div class="game-box grid grid-cols-3 gap-4 w-64 mx-auto">
         <div
           id="box1"
-          class="box dark:bg-slate-700 bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md dark:shadow-blue-500 dark:hover:bg-slate-600 hover:bg-gray-50 transition-colors duration-300"
+          class="box dark:bg-zinc-800 bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md dark:shadow-blue-500/30 dark:hover:bg-zinc-700 hover:bg-gray-50 transition-all duration-300 rounded-lg"
         ></div>
         <div
           id="box2"
-          class="box dark:bg-slate-700 bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md dark:shadow-blue-500 dark:hover:bg-slate-700 hover:bg-gray-50 transition-colors duration-300"
+          class="box dark:bg-zinc-800 bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md dark:shadow-blue-500/30 dark:hover:bg-zinc-700 hover:bg-gray-50 transition-all duration-300 rounded-lg"
         ></div>
         <div
           id="box3"
-          class="box dark:bg-slate-700 bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md dark:shadow-blue-500 dark:hover:bg-slate-700 hover:bg-gray-50 transition-colors duration-300"
+          class="box dark:bg-zinc-800 bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md dark:shadow-blue-500/30 dark:hover:bg-zinc-700 hover:bg-gray-50 transition-all duration-300 rounded-lg"
         ></div>
         <div
           id="box4"
-          class="box dark:bg-slate-700 bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md dark:shadow-blue-500 dark:hover:bg-slate-700 hover:bg-gray-50 transition-colors duration-300"
+          class="box dark:bg-zinc-800 bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md dark:shadow-blue-500/30 dark:hover:bg-zinc-700 hover:bg-gray-50 transition-all duration-300 rounded-lg"
         ></div>
         <div
           id="box5"
-          class="box dark:bg-slate-700 bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md dark:shadow-blue-500 dark:hover:bg-slate-700 hover:bg-gray-50 transition-colors duration-300"
+          class="box dark:bg-zinc-800 bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md dark:shadow-blue-500/30 dark:hover:bg-zinc-700 hover:bg-gray-50 transition-all duration-300 rounded-lg"
         ></div>
         <div
           id="box6"
-          class="box dark:bg-slate-700 bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md dark:shadow-blue-500 dark:hover:bg-slate-700 hover:bg-gray-50 transition-colors duration-300"
+          class="box dark:bg-zinc-800 bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md dark:shadow-blue-500/30 dark:hover:bg-zinc-700 hover:bg-gray-50 transition-all duration-300 rounded-lg"
         ></div>
         <div
           id="box7"
-          class="box dark:bg-slate-700 bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md dark:shadow-blue-500 dark:hover:bg-slate-700 hover:bg-gray-50 transition-colors duration-300"
+          class="box dark:bg-zinc-800 bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md dark:shadow-blue-500/30 dark:hover:bg-zinc-700 hover:bg-gray-50 transition-all duration-300 rounded-lg"
         ></div>
         <div
           id="box8"
-          class="box dark:bg-slate-700 bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md dark:shadow-blue-500 dark:hover:bg-slate-700 hover:bg-gray-50 transition-colors duration-300"
+          class="box dark:bg-zinc-800 bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md dark:shadow-blue-500/30 dark:hover:bg-zinc-700 hover:bg-gray-50 transition-all duration-300 rounded-lg"
         ></div>
         <div
           id="box9"
-          class="box dark:bg-slate-700 bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md dark:shadow-blue-500 dark:hover:bg-slate-700 hover:bg-gray-50 transition-colors duration-300"
+          class="box dark:bg-zinc-800 bg-white h-20 flex items-center justify-center text-4xl font-bold cursor-pointer shadow-md dark:shadow-blue-500/30 dark:hover:bg-zinc-700 hover:bg-gray-50 transition-all duration-300 rounded-lg"
         ></div>
       </div>
 
-
-
-      <div id="status" class="mt-8 text-xl font-semibold text-gray-700"></div>
+      <div id="status" class="mt-8 text-xl font-semibold text-gray-700 dark:text-gray-300"></div>
       <button
         id="resetBtn"
-        class="mx-auto mt-6 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors duration-300"
+        class="mx-auto mt-6 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
       >
         Reset Game
       </button>
 
       <button
         id="changeModeBtn"
-        class="mx-auto mt-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors duration-300"
+        class="mx-auto mt-4 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
       >
         Change Mode
       </button>
     </div>
 
     <!-- Winner Screen -->
-    <div id="winScreen" class=" hidden dark:bg-slate-700 dark:bg-opacity-90 dark:text-white  absolute top-0 w-full h-full z-20 bg-gray-100 bg-opacity-90 flex flex-col items-center justify-center gap-2">
-      <div class="mt-5 score-card flex flex-col gap-4 items-center justify-between"
-      >
+    <div id="winScreen" class="hidden dark:bg-zinc-800/90 dark:text-white absolute top-0 w-full h-full z-20 bg-gray-100/90 flex flex-col items-center justify-center gap-2 transition-all duration-300">
+      <div class="mt-5 score-card flex flex-col gap-4 items-center justify-between">
 
       <!-- Winner Text -->
-      <div id="winnerText" class="flex flex-col  items-center justify-center gap-5">
-        <h1  class="text-4xl font-bold text-center dark:text-white text-gray-800"><span id="winnerIs" class="text-red-500">Player1 (X) </span>Won 🎉🎊</h1>
-        <h1 id="gameDrawMsg"  class="text-4xl font-bold text-center dark:text-white text-gray-800">Game Draw 🥺</h1>
+      <div id="winnerText" class="flex flex-col items-center justify-center gap-5">
+        <h1 class="text-4xl font-bold text-center dark:text-white text-gray-800"><span id="winnerIs" class="text-red-500">Player1 (X) </span>Won 🎉🎊</h1>
+        <h1 id="gameDrawMsg" class="text-4xl font-bold text-center dark:text-white text-gray-800">Game Draw 🥺</h1>
 
-        <img src="./asset/memeGameDraw.gif" class="h-40" alt="Machine Wins">
+        <img src="./asset/memeGameDraw.gif" class="h-40 rounded-lg shadow-md" alt="Game Result">
       </div>
 
-        <h2 class="text-center text-3xl text-black dark:text-white font-bold">
+        <h2 class="text-center text-3xl text-black dark:text-white font-bold mt-4">
           Scores:
         </h2>
         <p id="player1Score" class="text-2xl text-red-500">
@@ -251,34 +244,34 @@
           <span class="ml-3" id="score1Name">0</span>
         </p>
         <p id="player2Score" class="text-2xl text-green-600">
-          <span id="player2Name">Player2</span>
+          <span id="player2Name">Player 2</span>
           <span class="ml-3" id="score2Name">0</span>
         </p>
       </div>
       <button
         id="newGameBtn"
-        class="mx-auto mt-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors duration-300"
+        class="mx-auto mt-6 px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
       >
         New Game
       </button>
-      <button id="prevGameBtn"
-        class="mx-auto mt-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors duration-300"
+      <button
+        id="prevGameBtn"
+        class="mx-auto mt-4 px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
       >
         Previous Game
       </button>
     </div>
 
     <div
-      class="dark:text-white z-[101] absolute bottom-2 w-full text-center text-gray-600"
+      class="dark:text-white z-[101] absolute bottom-4 w-full text-center text-gray-600 transition-colors duration-300"
     >
-      <p>
+      <p class="text-sm md:text-base">
         Made with 💖 by
         <a
-          class="dark:text-blue-300 text-blue-500"
+          class="dark:text-blue-300 text-blue-500 hover:underline transition-all duration-200"
           target="_blank"
           href="https://www.github.com/nerdyabhi"
-          >Nerdy Abhi</a
-        >
+        >Nerdy Abhi</a>
       </p>
     </div>
   </body>

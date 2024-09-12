@@ -98,6 +98,7 @@ function clearBoxes() {
   gameBoxes.forEach((box) => {
     box.innerText = '';
     box.classList.remove('clicked');
+    box.style.backgroundColor = ''; // Reset background color
   });
   updateHtml();
 }
@@ -123,6 +124,12 @@ const checkWinner = () => {
     ];
     if (pos1 != '' && pos2 != '' && pos3 != '') {
       if (pos1 === pos2 && pos1 === pos3) {
+        // Highlight winning pattern
+        const winColor = pos1 === 'X' ? '#ffcccc' : '#ccffcc';
+        gameBoxes[a].style.backgroundColor = winColor;
+        gameBoxes[b].style.backgroundColor = winColor;
+        gameBoxes[c].style.backgroundColor = winColor;
+
         updateWinscreen(pos1);
         disableBoxes();
 
