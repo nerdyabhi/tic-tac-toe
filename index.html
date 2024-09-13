@@ -75,6 +75,7 @@
     <div
       class="dark:text-blue-400 container flex flex-col justify-center items-center h-screen relative z-[12] md:my-10 md:mt-10"
     >
+    <!-- Change player names -->
       <div
         id="playerForm"
         class="hidden dark:bg-zinc-800 shadow-2xl opacity-95 dark:shadow-blue-500/50 shadow-gray-500/50 absolute top-30 bg-gray-100 playerBox w-[80%] md:w-[30%] z-[10] p-5 rounded-lg transition-all duration-300"
@@ -267,11 +268,12 @@
         Check Previous Game
       </button>
 
+    </div>
 
 
     <!-- Footer -->
 
-    <div
+    <footer
       class="dark:text-white z-[101] absolute bottom-4 w-full text-center text-gray-600 transition-colors duration-300"
     >
       <p class="text-sm md:text-base">
@@ -282,27 +284,7 @@
           href="https://www.github.com/nerdyabhi"
         >Nerdy Abhi</a>
       </p>
-    </div>
+    </footer>
   </body>
-  <script>
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const html = document.documentElement;
-
-    darkModeToggle.addEventListener('click', () => {
-      html.classList.toggle('dark');
-      
-      // Save user's preference
-      localStorage.setItem('darkMode', html.classList.contains('dark'));
-    });
-
-    // Check for saved user preference on load
-    document.addEventListener('DOMContentLoaded', () => {
-      const darkModePreference = localStorage.getItem('darkMode');
-      
-      if (darkModePreference === 'true') {
-        html.classList.add('dark');
-      }
-    });
-  </script>
   <script src="./script1.js" type="text/javascript"></script>
 </html>
