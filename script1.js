@@ -21,8 +21,14 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
+
 let turnO = false;
-let player1 = 'Player1 (X)', player2 = 'Player2 (O)';
+const playerNames =JSON.parse(localStorage.getItem("playerNames"));
+
+let player1 =playerNames[0]|| 'Player1 (X)';
+let player2 = playerNames[1] || 'Player2 (O)';
+console.log(player1 , player2);
+
 let htmlForTurn = `<span class="text-red-500 font-bold transition-all" > X </span>`;
 let score1 = 0,score2 = 0,count = 0;
 
@@ -44,6 +50,8 @@ function updateHtml() {
     playerNameDiv.classList.add('text-red-500');
   }
 }
+
+updateHtml();
 
 function updateScores() {
   const player1Score = document.querySelector('#player1Score');
@@ -158,7 +166,6 @@ modeSelection.addEventListener('click', (evt) => {
     modeSelection.style.display = 'none';
   } else if (evt.target.id == 'vsComBtn') {
     modeSelection.style.display = 'none';
-    player2 = 'JARVIS';
     vsCom = true;
   }
 
@@ -181,9 +188,13 @@ playerTurn.addEventListener('click', () => {
   player1input.value = player1;
   player2input.value = player2;
 
+
   changeNamebtn.addEventListener('click', () => {
     player1 = player1input.value.toUpperCase();
     player2 = player2input.value.toUpperCase();
+    
+  let stringFormatPlayerNames = JSON.stringify([player1 , player2]);
+  localStorage.setItem("playerNames" , stringFormatPlayerNames);
     updateHtml();
     playerForm.classList.add('hidden');
   });
