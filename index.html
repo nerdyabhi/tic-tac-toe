@@ -228,34 +228,30 @@
     <!-- Winner Screen -->
     <!-- Updated Winner Screen -->
     <div id="winScreen" class=" dark:bg-zinc-800/90 dark:text-white absolute top-0 w-full h-full z-20 bg-gray-100/90 flex flex-col items-center justify-center gap-2 transition-all duration-300 overflow-hidden">
-      <div class="absolute top-5 left-1/2 transform -translate-x-1/2 text-2xl text-yellow-400 font-bold animate-bounce">
-        Congratulations!
-      </div>
+
       <div class="mt-16 score-card flex flex-col gap-4 items-center justify-between">
 
       <!-- Winner Text -->
       <div id="winnerText" class="flex flex-col items-center justify-center gap-5">
-        <h1 class="text-4xl font-bold text-center dark:text-white text-gray-800">
+        <h1 class="text-2xl font-bold text-center dark:text-white text-gray-800">
           <span id="winnerIs" class="text-red-500">Player1 (X) </span>Won 🎉🎊
         </h1>
         <h1 id="gameDrawMsg" class="hidden text-4xl font-bold text-center dark:text-white text-gray-800">
           Game Draw 🥺
         </h1>
-
-        <div class="text-6xl animate-pulse">🏆</div>
         <img src="./asset/memeGameDraw.gif" class="h-40 rounded-lg shadow-md" alt="Game Result">
       </div>
 
-        <h2 class="text-center text-lg text-black dark:text-white font-bold mt-4">
+        <h2 class="text-center text-2xl text-black dark:text-white font-bold mt-4">
           Scores:
         </h2>
         <p id="player1Score" class="text-2xl text-red-500">
-          <span id="player1Name">Player 1</span>
-          <span class="ml-3" id="score1Name">0</span>
+          <span class="" id="player1Name">Player 1</span>
+          <span class="ml-3 font-bold" id="score1Name">0</span>
         </p>
         <p id="player2Score" class="text-2xl text-green-600">
           <span id="player2Name">Player 2</span>
-          <span class="ml-3" id="score2Name">0</span>
+          <span class="ml-3 font-bold" id="score2Name">0</span>
         </p>
       </div>
       <button
