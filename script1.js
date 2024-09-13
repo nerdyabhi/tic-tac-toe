@@ -10,28 +10,49 @@ const darkMode = document.querySelector('#darkModeToggle');
 const changeModeBtn = document.querySelector("#changeModeBtn");
 const body = document.querySelector('html');
 
+function toggleDarkMode() {
+  body.classList.toggle('dark');
+  if(body.classList.contains("dark"))
+    localStorage.setItem("theme" , JSON.stringify("dark"));
+  else
+    localStorage.setItem("theme" , JSON.stringify("light"));
+}
 // Logic for dark mode
 darkMode.addEventListener('click', () => {
-  body.classList.toggle('dark');
+ toggleDarkMode();
 });
+
+const themeCheck = JSON.parse(localStorage.getItem("theme"));
+if(themeCheck){
+    if(themeCheck == "dark") body.classList.add("dark");
+    else body.classList.remove("dark");
+}
 
 document.addEventListener('keydown', (event) => {
   if (event.key === ' ' || event.key === 'd' || event.key === 'D') {
-    body.classList.toggle('dark');
+    toggleDarkMode();
   }
 });
+
+let vsCom = false;
+
+const mode = JSON.parse(localStorage.getItem("mode"));
+
+if(mode){
+    modeSelection.style.display = "none";
+    if(mode === "multiplayer") vsCom = false;
+    else if(mode === "AI") vsCom= true;
+}
 
 
 let turnO = false;
 const playerNames =JSON.parse(localStorage.getItem("playerNames"));
-let player1 = "PLAYER 1(X)" , player2 = "Player 2 (X)"
+let player1 = "PLAYER 1(X)" , player2 = "Player 2"
 if(playerNames){
    player1 =playerNames[0];
    player2 = playerNames[1];
 }
 
-
-console.log(player1 , player2);
 
 let htmlForTurn = `<span class="text-red-500 font-bold transition-all" > X </span>`;
 let score1 = 0,score2 = 0,count = 0;
@@ -52,6 +73,15 @@ function updateHtml() {
     /* Basic Color Change*/
     playerNameDiv.classList.remove('text-green-500');
     playerNameDiv.classList.add('text-red-500');
+  }
+
+  
+  if(vsCom){
+    document.getElementById("msgForMode").innerText = "AI MODE 🤖";
+  }
+
+  else{
+    document.getElementById("msgForMode").innerText = "HUMAN MODE 🧑‍💼";
   }
 }
 
@@ -162,15 +192,16 @@ const gameDraw = () => {
   updateWinscreen('draw');
 };
 
-let vsCom = false;
 
 // Select what mode?
 modeSelection.addEventListener('click', (evt) => {
   if (evt.target.id == 'multiBtn') {
     modeSelection.style.display = 'none';
+    localStorage.setItem("mode" , JSON.stringify("multiplayer"));
   } else if (evt.target.id == 'vsComBtn') {
     modeSelection.style.display = 'none';
     vsCom = true;
+    localStorage.setItem("mode" , JSON.stringify("AI"));
   }
 
   if(vsCom){
@@ -223,14 +254,20 @@ prevGameBtn.addEventListener('click', () => {
 
 changeModeBtn.addEventListener('click' , ()=>{
     clearBoxes();
-    vsCom = !vsCom;
-    if(vsCom){
-      document.getElementById("msgForMode").innerText = "AI MODE 🤖";
-    }
+    const oldMode = JSON.parse(localStorage.getItem("mode"));
+    let newMode =  "multiplayer";
+    
+    if(oldMode){
+    if(oldMode == "multiplayer")  newMode = "AI";
+    localStorage.setItem("mode" , JSON.stringify(newMode));
 
-    else{
-      document.getElementById("msgForMode").innerText = "HUMAN MODE 🧑‍💼";
     }
+   
+
+
+
+    vsCom = !vsCom;
+   updateHtml();
 })
 
 let boardLocked = false;
