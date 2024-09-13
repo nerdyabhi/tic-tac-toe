@@ -5,6 +5,10 @@
 One of the games i used to play with my friend in a boring lecture.
 - Although , i made this project while learning javascript
 
+### Version 2.1 Updates:
+1. Used localstorage to store , player's name , theme and Mode
+
+2. Better Dark Mode Theme
 
 ### Version 2.0 Updates:
 1. Implemented a bot to play against user.
