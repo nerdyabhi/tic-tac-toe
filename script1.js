@@ -24,9 +24,13 @@ document.addEventListener('keydown', (event) => {
 
 let turnO = false;
 const playerNames =JSON.parse(localStorage.getItem("playerNames"));
+let player1 = "PLAYER 1(X)" , player2 = "Player 2 (X)"
+if(playerNames){
+   player1 =playerNames[0];
+   player2 = playerNames[1];
+}
 
-let player1 =playerNames[0]|| 'Player1 (X)';
-let player2 = playerNames[1] || 'Player2 (O)';
+
 console.log(player1 , player2);
 
 let htmlForTurn = `<span class="text-red-500 font-bold transition-all" > X </span>`;
